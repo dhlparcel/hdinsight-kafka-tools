@@ -334,7 +334,7 @@ def get_brokerhost_info(zookeeper_client):
     for zk_broker_id in zk_brokers_ids:
         zk_broker_id_data, stat = zookeeper_client.get('{0}/{1}'.format(BROKERS_ID_PATH, zk_broker_id))
         zk_broker_info = json.loads(zk_broker_id_data)
-        zk_broker_host = _get_fqdn(zk_broker_info['host'])
+        zk_broker_host = "%s-hdi40" % _get_fqdn(zk_broker_info['host'])[0:3]
         brokers_info[zk_broker_host] = zk_broker_id
     return brokers_info
 
